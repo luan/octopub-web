@@ -1,0 +1,9 @@
+development:
+  adapter: postgresql
+  database: octopub_development
+  host: localhost
+
+test:
+  adapter: postgresql
+  database: octopub_test
+  host: localhost
