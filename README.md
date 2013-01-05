@@ -4,6 +4,4 @@
 [gemnasium]: https://gemnasium.com/luan/octopub
 [codeclimate]: https://codeclimate.com/github/luan/octopub
 
-# What is Octopub
-
-Nothing yet.
+Nothing here yet.
