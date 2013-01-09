@@ -14,6 +14,8 @@ end
 gem 'jquery-rails'
 gem 'simple_form'
 gem 'active_attr'
+gem 'omniauth'
+gem 'omniauth-github'
 
 group :development do
   gem 'foreman'
@@ -25,13 +27,18 @@ group :development do
   gem 'binding_of_caller'
 end
 
-group :test do
+group :development, :test do
   gem 'rspec-rails'
+end
+
+group :test do
+  gem 'database_cleaner'
 
   gem 'launchy', require: false
-  gem 'capybara', require: false
+  gem 'capybara'
+  gem 'capybara-webkit'
   gem 'cucumber-rails', require: false
-  gem 'shoulda-matchers', require: false
+  gem 'shoulda-matchers'
 
   gem 'pry-rails', require: false
   gem 'awesome_print', require: false

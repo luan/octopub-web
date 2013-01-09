@@ -8,6 +8,14 @@
 </head>
 <body>
 
+<div>
+  <% if current_user %>
+    <%= current_user.username %>
+  <% else %>
+    <%= link_to "Sign in through GitHub", '/auth/github' %>
+  <% end %>
+</div>
+
 <%= yield %>
 
 </body>
