@@ -4,7 +4,7 @@ rvm:
 script: 
   - RAILS_ENV=test bundle exec rake db:migrate --trace
   - bundle exec rake db:test:prepare
-  - bundle exec rake
+  - xvfb-run bundle exec rake
 before_script:
   - psql -c 'create database octopub_test;' -U postgres
 secure: Sjh+TkXSEID5CRTkg2dlJlYKS+cnreSt+BufelHEUWq88IR2mT20opX6ed3r\nxfzoHq1oaHLvg1r3YS4lOkCwe+tG4ENJX4OqJKLzTDgAv60QTLHyAGrnkwow\nbol/G5DyjSH+D3chx7+WJ7tYetKkEsO3cZGZ3cVO02GOo8jxrIQ
