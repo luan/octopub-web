@@ -1,19 +1,12 @@
 Given /^I have a github account$/ do
-  visit 'https://github.com/login'
-  fill_in 'Username or Email', with: Secrets[:GITHUB_USER]
-  fill_in 'Password', with: Secrets[:GITHUB_PASSWD]
-  click_button 'Sign in'
+  if @use_github_website
+    step "I login to the github website"
+  end
 end
 
 Given /^I have never logged in$/ do
-  visit 'https://github.com/settings/applications'
-  settings = find '#page-settings .settings-content'
-  authorized = settings.find('h3', text: 'Authorized applications').find(:xpath, '..')
-
-  begin
-    app = authorized.find_link(text: 'Octopub TEST').find(:xpath, '..')
-    app.click_on 'Revoke'
-  rescue
+  if @use_github_website
+    step "I revoke the app key on the github website"
   end
 end
 
@@ -35,9 +28,10 @@ end
 
 Then /^I should be logged in/ do
   page.should have_content Secrets[:GITHUB_USER]
+  @user.token.should_not be_blank
 end
 
-Given /^I have an account$/ do
-  @user = User.create_with_username Secrets[:GITHUB_USER]
+Given /^I have an octopub account$/ do
+  step "I have a github account"
+  @user = User.find_or_create_by_username(Secrets[:GITHUB_USER])
 end
-

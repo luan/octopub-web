@@ -7,24 +7,35 @@ describe SessionsController do
     end
 
     shared_examples_for "a user from github" do
+      before { post :create }
+
+      it "fills in the user info" do
+        mock_auth = OmniAuth.config.mock_auth[:github]
+        username = mock_auth[:extra][:raw_info][:login]
+        token = mock_auth[:credentials][:token]
+
+        User.find_by_username(username).token.should == token
+      end
+
       it "logs the user in" do
-        post :create
         session[:user_id].should == subject.id
       end
 
       it "redirects the user to the root path" do
-        post :create
         response.should redirect_to root_url
       end
     end
 
     context "when the user coming back" do
-      subject { User.create_with_username 'oldguy' }
+      subject { User.create! { |u| u.username = 'oldguy' } }
 
       before do
         subject
         OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new({
           provider: 'github',
+          credentials: {
+            token: 'the-token'
+          },
           extra: {
             raw_info: {
               login: 'oldguy',
@@ -49,6 +60,9 @@ describe SessionsController do
       before do
         OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new({
           provider: 'github',
+          credentials: {
+            token: 'the-token'
+          },
           extra: {
             raw_info: {
               login: 'newguy',

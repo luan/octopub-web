@@ -11,14 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130108074221) do
+ActiveRecord::Schema.define(:version => 20130109080702) do
 
   create_table "users", :force => true do |t|
     t.string   "username"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "token"
   end
 
+  add_index "users", ["token"], :name => "index_users_on_token"
   add_index "users", ["username"], :name => "index_users_on_username", :unique => true
 
 end
