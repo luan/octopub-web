@@ -1,7 +1,7 @@
 Given /^I have a github account$/ do
   visit 'https://github.com/login'
-  fill_in 'Username or Email', with: ENV['GITHUB_USER']
-  fill_in 'Password', with: ENV['GITHUB_PASSWD']
+  fill_in 'Username or Email', with: Secrets[:GITHUB_USER]
+  fill_in 'Password', with: Secrets[:GITHUB_PASSWD]
   click_button 'Sign in'
 end
 
@@ -30,14 +30,14 @@ end
 Then /^I should be registered$/ do
   User.count.should == 1
   @user = User.last
-  @user.username.should == ENV['GITHUB_USER']
+  @user.username.should == Secrets[:GITHUB_USER]
 end
 
 Then /^I should be logged in/ do
-  page.should have_content ENV['GITHUB_USER']
+  page.should have_content Secrets[:GITHUB_USER]
 end
 
 Given /^I have an account$/ do
-  @user = User.create_with_username ENV['GITHUB_USER']
+  @user = User.create_with_username Secrets[:GITHUB_USER]
 end
 

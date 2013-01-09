@@ -7,4 +7,9 @@ script:
   - xvfb-run bundle exec rake
 before_script:
   - psql -c 'create database octopub_test;' -U postgres
-secure: Sjh+TkXSEID5CRTkg2dlJlYKS+cnreSt+BufelHEUWq88IR2mT20opX6ed3r\nxfzoHq1oaHLvg1r3YS4lOkCwe+tG4ENJX4OqJKLzTDgAv60QTLHyAGrnkwow\nbol/G5DyjSH+D3chx7+WJ7tYetKkEsO3cZGZ3cVO02GOo8jxrIQ
+env:
+  global:
+    - secure: "Znxs+enPR44kmY9HTvHD3np1rs7Xf/bJh5/F+1vt6MIqRJI9dx2MtMdmKq6P\nhzDvhihnc4bz5tpzmc7AklopnLvGk6LqWoxiFem5CZad8am0swoiDiALvVgO\nUH5/GCQ6LSgnGssMqxZjmgcCjXfnMJKH8usrn2OwHAk17MlnIQE="
+    - secure: "cpazNPRLjEr7dhldYL7RZr726+5u3jqrWaa/EfdZm3r6Y3chodJx7V4Eh5aZ\nViI7jnD/zuJ4NWasu8URKj/+Z98LKwi0LTDfPp29iAw0ucz587fsPBGhSnix\nEl9V8aKjC629N4Hk4zKKPZRvJS7tJvNIPLC9PO8RwU3iUtqd8k8="
+    - secure: "Jtld34iAwq4Fy2fUKw1D8OCafGVxG//YLJHfCmXwnwLWhQ0KkKdFuDhhd6nE\n82mvEfXc6BDmwHFzQXx9KlulU0rB/DvahXQ4j6NiRiTIAubUUmRf8IXcDIBS\nkt9Js2u+Tej9mY44tnRBrbZwzCdi8dEy4ShINErx/pI/eABo1/g="
+    - secure: "eqpea3Vs8AJU8U5xwsZLMYHn5RBTULz9ByRj73DvYWtGwgHsR9z1KTZh9x5u\nryIYcN55OhVvQnZ3qQVQekqGPXGASe/bDiCqWrQyoMKUBXXeQQ4KCc72mYeQ\nOQYY876tmNMVjX7CJYaB4mQZZzGXMauOzpfKLlyd/HGfmzeR4Xg="
