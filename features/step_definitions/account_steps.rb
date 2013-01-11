@@ -16,8 +16,10 @@ When /^I try to login$/ do
 end
 
 When /^I allow the app the do actions on my behalf$/ do
-  click_on 'Allow'
-  current_path.should == '/'
+  if @use_github_website
+    click_on 'Authorize app'
+    current_path.should == '/'
+  end
 end
 
 Then /^I should be registered$/ do
