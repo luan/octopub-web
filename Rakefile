@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Octopub::Application.load_tasks
+OctopubWeb::Application.load_tasks
