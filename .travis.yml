@@ -9,7 +9,7 @@ before_script:
   - psql -c 'create database octopub_test;' -U postgres
 env:
   global:
-    - secure: "Znxs+enPR44kmY9HTvHD3np1rs7Xf/bJh5/F+1vt6MIqRJI9dx2MtMdmKq6P\nhzDvhihnc4bz5tpzmc7AklopnLvGk6LqWoxiFem5CZad8am0swoiDiALvVgO\nUH5/GCQ6LSgnGssMqxZjmgcCjXfnMJKH8usrn2OwHAk17MlnIQE="
-    - secure: "cpazNPRLjEr7dhldYL7RZr726+5u3jqrWaa/EfdZm3r6Y3chodJx7V4Eh5aZ\nViI7jnD/zuJ4NWasu8URKj/+Z98LKwi0LTDfPp29iAw0ucz587fsPBGhSnix\nEl9V8aKjC629N4Hk4zKKPZRvJS7tJvNIPLC9PO8RwU3iUtqd8k8="
-    - secure: "Jtld34iAwq4Fy2fUKw1D8OCafGVxG//YLJHfCmXwnwLWhQ0KkKdFuDhhd6nE\n82mvEfXc6BDmwHFzQXx9KlulU0rB/DvahXQ4j6NiRiTIAubUUmRf8IXcDIBS\nkt9Js2u+Tej9mY44tnRBrbZwzCdi8dEy4ShINErx/pI/eABo1/g="
-    - secure: "eqpea3Vs8AJU8U5xwsZLMYHn5RBTULz9ByRj73DvYWtGwgHsR9z1KTZh9x5u\nryIYcN55OhVvQnZ3qQVQekqGPXGASe/bDiCqWrQyoMKUBXXeQQ4KCc72mYeQ\nOQYY876tmNMVjX7CJYaB4mQZZzGXMauOzpfKLlyd/HGfmzeR4Xg="
+    - secure: "t5WExrWdydqqqUmNuxh6mCXVb6uOY69iLsFua+Uy/HHOnzefYLRrneUsvrY1\nsMD0AaCy1cfsTU4fAFA2OsrVRca4fFBnnrxnWXuqPLJbCQbXj0ZYoJZcrGVc\nm9ZSoRaMlAF1g/SVm7CAiquQnfoomaj1Cvl/R7doAvy7tNkyLtc="
+    - secure: "dIxmbccpV2Rt0xEL8NSTD2eL3Wefyg+HWxoZFLyn9zibzGj7XSIIuccNSGlX\nyDKhtFLdVppmHpU1ZkyUGavxovxWrfea2Fe/Mk8LgQ/1AEfdNUJ6VBLZy416\nq2gM3+FgmuRZW83k2jK2MQcCqWH8l/twhZeItPjbpf5Em1p3Bs8="
+    - secure: "VWS7ckWY7weM3XODvv2zD3fkzj8u8MFW7Hpp9NyZOsgcIXPneNKmrC985RMz\n0dqMKGvbsV9rlvcTa672UrQg4x6O/VWDrD96IkG0b3KqBJdLFvWctQdORY4C\nsdZBJb3Qg+fxi3J/iP0GvVLosYCc2neUaHXXdhd02ooscjIcYw8="
+    - secure: "ODB3uNs155ZL2bC3iRZYksAf09OrA1GzDBu5cKtJuw4h/DRQVPqo9ZLYYJ5Z\nGv/eJ41Vw/kYOG/3HJev3KSavrNlqzt03Pea8iYzOjPcx3F5Klc0Gb1SHLkW\nSvMLOiTP8wvB9mZnyRtIVhYRvfaGIKFlSJw3J+mD9DZbtaKN/jE="
