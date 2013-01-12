@@ -17,7 +17,7 @@ end
 
 Given /^I have authorized the octopub app$/ do
   step "I have a github account"
-  step "I try to login"
+  visit '/auth/github'
   step "I allow the app to do actions on my behalf"
 end
 
@@ -30,7 +30,7 @@ end
 
 When /^I allow the app to do actions on my behalf$/ do
   if @use_github_website
-    click_on 'Authorize app'
+    click_on 'Authorize app' rescue nil
     current_path.should == '/'
   else
     oauths = @github.ouath.all

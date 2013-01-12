@@ -11,5 +11,4 @@ Feature: User sessions
 
   Scenario: Coming back
     Given I have an octopub account
-    When I try to login
     Then I should be logged in
