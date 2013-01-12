@@ -16,6 +16,7 @@ gem 'simple_form'
 gem 'active_attr'
 gem 'omniauth'
 gem 'omniauth-github'
+gem 'github_api'
 
 group :development do
   gem 'foreman'
