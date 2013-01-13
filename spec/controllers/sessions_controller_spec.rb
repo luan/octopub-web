@@ -31,19 +31,7 @@ describe SessionsController do
 
       before do
         subject
-        OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new({
-          provider: 'github',
-          credentials: {
-            token: 'the-token'
-          },
-          extra: {
-            raw_info: {
-              login: 'oldguy',
-              email: 'foo@bar.baz'
-            }
-          }
-        })
-
+        OmniAuth.mock_github_auth 'the-token', 'oldguy'
         request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:github]
       end
 
@@ -58,19 +46,7 @@ describe SessionsController do
       subject { User.last }
 
       before do
-        OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new({
-          provider: 'github',
-          credentials: {
-            token: 'the-token'
-          },
-          extra: {
-            raw_info: {
-              login: 'newguy',
-              email: 'bin@bar.baz'
-            }
-          }
-        })
-
+        OmniAuth.mock_github_auth 'the-token', 'newguy'
         request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:github]
       end
 

@@ -1,40 +1,21 @@
-Given /^I have a github account$/ do
-  if @use_github_website
-    step "I login to the github website"
-  else
-    @github = Github.new({
-      login: Secrets[:GITHUB_USER],
-      password: Secrets[:GITHUB_PASSWD]
-    })
-  end
-end
-
 Given /^I have never logged in$/ do
-  if @use_github_website
-    step "I revoke the app key on the github website"
-  end
+  step "I revoke the app key on the github website" if @use_github_website
 end
 
 Given /^I have authorized the octopub app$/ do
   step "I have a github account"
-  visit '/auth/github'
-  step "I allow the app to do actions on my behalf"
+  step "I generate a token for the octopub app" unless @use_github_website
+  step "I try to login"
+  step "I allow the app to do actions on my behalf on the website" if @use_github_website
 end
 
 When /^I try to login$/ do
-  if @use_github_website
-    visit '/'
-    click_on 'Sign in through GitHub'
-  end
+  visit '/'
+  click_on 'Sign in through GitHub'
 end
 
 When /^I allow the app to do actions on my behalf$/ do
-  if @use_github_website
-    click_on 'Authorize app' rescue nil
-    current_path.should == '/'
-  else
-    oauths = @github.ouath.all
-  end
+  step "I allow the app to do actions on my behalf on the website" if @use_github_website
 end
 
 Then /^I should be registered$/ do

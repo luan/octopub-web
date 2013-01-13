@@ -5,6 +5,8 @@
 # files.
 
 require 'cucumber/rails'
+require './spec/support/github_helper'
+require './spec/support/omni_auth_helper'
 
 # Capybara defaults to XPath selectors rather than Webrat's default of CSS3. In
 # order to ease the transition to Capybara we set the default here. If you'd

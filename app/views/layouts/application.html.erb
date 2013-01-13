@@ -8,13 +8,18 @@
 </head>
 <body>
 
-<div>
-  <% if current_user %>
-    <%= current_user.username %>
-  <% else %>
-    <%= link_to "Sign in through GitHub", '/auth/github' %>
-  <% end %>
-</div>
+<ul>
+  <li>
+    <% if current_user %>
+      <%= current_user.username %>
+    <% else %>
+      <%= link_to "Sign in through GitHub", '/auth/github' %>
+    <% end %>
+  </li>
+  <li>
+    <%= link_to "Create Blog", new_blog_path %>
+  </li>
+</ul>
 
 <%= yield %>
 

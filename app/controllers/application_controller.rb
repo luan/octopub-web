@@ -7,4 +7,8 @@ class ApplicationController < ActionController::Base
     reset_session
   end
   helper_method :current_user
+
+  def authorize_user!
+    redirect_to root_url unless current_user
+  end
 end

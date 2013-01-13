@@ -16,3 +16,8 @@ Given /^I revoke the app key on the github website$/ do
   rescue
   end
 end
+
+When /^I allow the app to do actions on my behalf on the website$/ do
+  click_on 'Authorize app' rescue nil
+  current_path.should == '/'
+end
