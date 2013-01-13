@@ -16,24 +16,28 @@ describe User do
     it { should have_many :blogs }
   end
 
+  before { @user = User.new }
+
   describe "#octopub" do
     it "builds an Octopub client object" do
-      subject.octopub.should be_a(Octopub)
+      @user.octopub.should be_a(Octopub)
     end
   end
 
   describe "#create_blog" do
-    subject { User.create! { |u| u.username = 'login' } }
-    before { subject.octopub.stub(:create_repo) }
+    before do
+      @user = User.create! { |u| u.username = 'login' }
+      @user.octopub.stub(:create_repo)
+    end
 
     it "creates a github repo" do
-      subject.octopub.should_receive(:create_repo).with('repo-the-name')
-      subject.create_blog 'Repo The Name'
+      @user.octopub.should_receive(:create_repo).with('repo-the-name')
+      @user.create_blog 'Repo The Name'
     end
 
     it "creates a blog" do
-      subject.create_blog 'Repo The Name'
-      subject.blogs.should have(1).blog
+      @user.create_blog 'Repo The Name'
+      @user.blogs.should have(1).blog
     end
   end
 end

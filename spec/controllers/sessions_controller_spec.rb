@@ -2,9 +2,7 @@ require 'spec_helper'
 
 describe SessionsController do
   describe "POST 'create'" do
-    before do
-      OmniAuth.config.test_mode = true
-    end
+    before { OmniAuth.config.test_mode = true }
 
     shared_examples_for "a user from github" do
       before { post :create }
@@ -18,7 +16,7 @@ describe SessionsController do
       end
 
       it "logs the user in" do
-        session[:user_id].should == subject.id
+        session[:user_id].should == user.id
       end
 
       it "redirects the user to the root path" do
@@ -27,10 +25,9 @@ describe SessionsController do
     end
 
     context "when the user coming back" do
-      subject { User.create! { |u| u.username = 'oldguy' } }
+      let!(:user) { User.create! { |u| u.username = 'oldguy' } }
 
       before do
-        subject
         OmniAuth.mock_github_auth 'the-token', 'oldguy'
         request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:github]
       end
@@ -43,7 +40,7 @@ describe SessionsController do
     end
 
     context "when the user is new" do
-      subject { User.last }
+      let(:user) { User.last }
 
       before do
         OmniAuth.mock_github_auth 'the-token', 'newguy'

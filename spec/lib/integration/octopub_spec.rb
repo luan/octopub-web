@@ -20,31 +20,29 @@ def check_deleted(github, repo_name)
   end
 end
 
-WebMock.allow_net_connect! if defined? WebMock
-
-describe Octopub do
+describe "Octopub integration" do
   before :all do
-    @github = GithubHelper.github_login
-    @token = GithubHelper.github_token @github
-    subject.create_repo 'a-blog' rescue nil
+    WebMock.allow_net_connect! if defined? WebMock
+    @token = GithubHelper.github_token
+    @octopub = Octopub.new @token
+    @octopub.create_repo 'a-blog' rescue nil
   end
 
   after :all do
     @github.repos.delete Secrets[:GITHUB_USER], 'a-blog' rescue nil
     check_deleted @github, 'a-blog'
+    WebMock.disable_net_connect! if defined? WebMock
   end
-
-  subject { Octopub.new(@token) }
 
   describe "#get_repo" do
     it "returns the repo created" do
-      subject.get_repo('a-blog')['name'].should == 'a-blog'
+      @octopub.get_repo('a-blog')['name'].should == 'a-blog'
     end
   end
 
   describe "#list_repos" do
     it "returns the repo created" do
-      subject.list_repos.should have_repo 'a-blog'
+      @octopub.list_repos.should have_repo 'a-blog'
     end
   end
 end
