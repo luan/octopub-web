@@ -20,7 +20,7 @@ describe User do
 
   describe "#octopub" do
     it "builds an Octopub client object" do
-      @user.octopub.should be_a(Octopub)
+      @user.octopub.should be_a(Octopub::Client)
     end
   end
 

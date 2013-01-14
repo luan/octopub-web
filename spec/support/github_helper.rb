@@ -10,7 +10,10 @@ class GithubHelper
 
   def self.github_token(github=nil)
     github ||= github_login
-    oauth = github.oauth.all.select { |oa| oa['app']['name'] == 'Octopub TEST' }.first
+    oauth = github.oauth.all.select do |oa|
+      oa['app']['name'] == 'Octopub TEST'
+    end.first
+
     github.oauth.delete oauth['id'] rescue nil
 
     github.oauth.create({

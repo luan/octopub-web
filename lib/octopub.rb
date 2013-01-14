@@ -1,30 +1,38 @@
-class Octopub
-  attr_reader :github
-
-  def initialize(token)
-    @github = Github.new oauth_token: token
+module Octopub
+  class << self
+    def new(token)
+      Client.new(token)
+    end
   end
 
-  def create_repo(name)
-    github.repos.create name: name, auto_init: true
-  end
+  class Client
+    attr_reader :github
 
-  def get_repo(name)
-    github.repos.get(login, name)
-  end
+    def initialize(token)
+      @github = Github.new oauth_token: token
+    end
 
-  def list_repos
-    github.repos.list
-  end
+    def create_repo(name)
+      github.repos.create name: name, auto_init: true
+    end
 
-  def create_blog(name)
-    repo = name.downcase.gsub(/\s/, '-')
-    create_repo(repo)
-  end
+    def get_repo(name)
+      github.repos.get(login, name)
+    end
 
-  private
+    def list_repos
+      github.repos.list
+    end
 
-  def login
-    @login ||= github.users.get['login']
+    def create_blog(name)
+      repo = name.downcase.gsub(/\s/, '-')
+      create_repo(repo)
+    end
+
+    private
+
+    def login
+      @login ||= github.users.get['login']
+    end
   end
 end
