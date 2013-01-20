@@ -19,7 +19,7 @@ class GithubHelper
     github.oauth.create({
       client_id: Secrets[:GITHUB_KEY],
       client_secret: Secrets[:GITHUB_SECRET],
-      scopes: 'public_repo'
+      scopes: 'repo'
     })['token']
   end
 end

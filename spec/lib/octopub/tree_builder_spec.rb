@@ -19,7 +19,9 @@ describe Octopub::TreeBuilder do
   end
 
   it "builds a tree out of a directory" do
-    Octopub::TreeBuilder.build('./spec/fixtures/tree1').should == [
+    built_tree = Octopub::TreeBuilder.build('./spec/fixtures/tree1')
+
+    [
       {
         "type" => "blob",
         "path" => "file1",
@@ -44,6 +46,6 @@ describe Octopub::TreeBuilder do
         "mode" => "100644",
         "content" => ""
       }
-    ]
+    ].each { |f| built_tree.should include f }
   end
 end
