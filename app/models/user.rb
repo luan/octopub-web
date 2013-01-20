@@ -9,8 +9,8 @@ class User < ActiveRecord::Base
   end
 
   def create_blog(name)
-    repo_name = name.downcase.gsub(/\s/, '-')
-    octopub.create_repo repo_name
-    blogs << Blog.create(name: name, repo: repo_name)
+    blog = octopub.create_blog(name)
+    blogs << Blog.create(name: name, repo: blog.repo)
+    blog.clone_octopress
   end
 end

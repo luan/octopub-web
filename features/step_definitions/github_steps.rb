@@ -19,3 +19,7 @@ end
 Then /^I should have a github repo called "(.*?)"$/ do |repo_name|
   @github.should have_repo repo_name
 end
+
+Then /^delete repository called "(.*?)"$/ do |repo_name|
+  @github.repos.delete Secrets[:GITHUB_USER], repo_name rescue nil
+end

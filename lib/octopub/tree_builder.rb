@@ -1,5 +1,3 @@
-require 'base64'
-
 module Octopub
   class TreeBuilder
     def self.describe(path, file)
@@ -16,8 +14,7 @@ module Octopub
           "type" => "blob",
           "path" => file,
           "mode" => "100644",
-          "content" => Base64.encode64(File.read path),
-          "encoding" => "base64"
+          "content" => File.read(path)
         }
       end
     end

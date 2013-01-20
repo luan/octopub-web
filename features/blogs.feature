@@ -7,4 +7,4 @@ Feature: Blogs
 
   Scenario: Creating a new blog
     When I create a blog named "Octopub Test Blog"
-    Then I should have a github repo called "octopub-test-blog"
+    Then I should have an octopress clone called "octopub-test-blog"

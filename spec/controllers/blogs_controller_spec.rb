@@ -26,7 +26,8 @@ describe BlogsController do
 
     describe "POST 'create'" do
       it "returns http success" do
-        @user.octopub.should_receive(:create_repo).with('some-name')
+        blog = stub(repo: 'some-name').as_null_object
+        @user.octopub.should_receive(:create_blog).with('some name').and_return(blog)
         post :create, blog: { name: 'some name' }
         @user.blogs.should have(1).blog
         @user.blogs.last.name.should == 'some name'

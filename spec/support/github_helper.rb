@@ -18,26 +18,9 @@ class GithubHelper
 
     github.oauth.create({
       client_id: Secrets[:GITHUB_KEY],
-      client_secret: Secrets[:GITHUB_SECRET]
+      client_secret: Secrets[:GITHUB_SECRET],
+      scopes: 'public_repo'
     })['token']
   end
 end
 
-RSpec::Matchers.define :have_repo do |repo_name|
-  match do |actual|
-    repos = actual.respond_to?(:repos) ? actual.repos.list : actual
-    repos.select { |r| r['name'] == repo_name }.first != nil
-  end
-
-  failure_message_for_should do |actual|
-    "expected user to have #{expected} repository"
-  end
-
-  failure_message_for_should_not do |actual|
-    "expected user not to have #{expected} repository"
-  end
-
-  description do
-    "have a repository called #{expected}"
-  end
-end

@@ -27,17 +27,19 @@ describe User do
   describe "#create_blog" do
     before do
       @user = User.create! { |u| u.username = 'login' }
-      @user.octopub.stub(:create_repo)
-    end
-
-    it "creates a github repo" do
-      @user.octopub.should_receive(:create_repo).with('repo-the-name')
-      @user.create_blog 'Repo The Name'
+      @blog = stub(repo: 'repo-the-name').as_null_object
+      @user.octopub.stub(:create_blog).and_return(@blog)
     end
 
     it "creates a blog" do
       @user.create_blog 'Repo The Name'
       @user.blogs.should have(1).blog
+      @user.blogs.last.repo.should == 'repo-the-name'
+    end
+
+    it "clones octopress" do
+      @blog.should_receive(:clone_octopress)
+      @user.create_blog 'Repo The Name'
     end
   end
 end

@@ -6,8 +6,7 @@ describe Octopub::TreeBuilder do
       "type" => "blob",
       "path" => "file1",
       "mode" => "100644",
-      "content" => Base64.encode64("this file\nhas contents\n"),
-      "encoding" => "base64"
+      "content" => "this file\nhas contents\n"
     }
   end
 
@@ -25,8 +24,7 @@ describe Octopub::TreeBuilder do
         "type" => "blob",
         "path" => "file1",
         "mode" => "100644",
-        "content" => Base64.encode64("this file\nhas contents\n"),
-        "encoding" => "base64"
+        "content" => "this file\nhas contents\n"
       }, {
         "type" => "tree",
         "path" => "subdir",
@@ -35,8 +33,16 @@ describe Octopub::TreeBuilder do
         "type" => "blob",
         "path" => "subdir/subfile",
         "mode" => "100644",
-        "content" => Base64.encode64("subfile\ncontents\n"),
-        "encoding" => "base64"
+        "content" => "subfile\ncontents\n"
+      }, {
+        "type" => "tree",
+        "path" => "subdir/subsubdir",
+        "mode" => "040000"
+      }, {
+        "type" => "blob",
+        "path" => "subdir/subsubdir/subsubfile",
+        "mode" => "100644",
+        "content" => ""
       }
     ]
   end
