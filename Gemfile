@@ -29,7 +29,7 @@ end
 group :development, :test do
   gem 'pry-rails'
   gem 'awesome_print'
-  gem 'rspec-rails'
+  gem 'rspec-rails', '~> 2.12.2'
 end
 
 group :test do
@@ -40,8 +40,6 @@ group :test do
   gem 'capybara-webkit'
   gem 'cucumber-rails', require: false
   gem 'shoulda-matchers'
-  gem 'webmock'
-  gem 'vcr'
 
   gem 'pry-rails', require: false
   gem 'awesome_print', require: false

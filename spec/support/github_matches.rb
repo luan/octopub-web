@@ -1,18 +1,26 @@
 require './config/initializers/secrets'
 
 RSpec::Matchers.define :have_repo do |repo_name|
-  match do |actual|
+  def has_repo?(repo_name, want)
     tries = 0
-    result = false
+    result = !want
 
-    until result || tries >= 10
-      repos = actual.respond_to?(:repos) ? actual.repos.list : actual
+    until result == want || tries >= 5
+      repos = actual.repos.list
       result = repos.select { |r| r['name'] == repo_name }.first != nil
       tries += 1
-      sleep 1
+      sleep 0.5
     end
 
     result
+  end
+
+  match do |actual|
+    has_repo?(repo_name, true)
+  end
+
+  match_for_should_not do |actual|
+    !has_repo?(repo_name, false)
   end
 
   failure_message_for_should do |actual|
